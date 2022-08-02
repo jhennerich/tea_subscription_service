@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'The items API' do
+RSpec.describe 'customers/:customer_id/subscriptions API endpoint' do
   context 'happy path' do
     it 'sends a list of subscriptions' do
       cust = Customer.create!(first_name: 'John', last_name: 'H', email: 'john@email.com', address: '123 Anywhere')
