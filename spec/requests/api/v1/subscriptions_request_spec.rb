@@ -1,0 +1,40 @@
+require 'rails_helper'
+
+RSpec.describe 'The items API' do
+  context 'happy path' do
+    it 'sends a list of subscriptions' do
+      cust = Customer.create!(first_name: 'John', last_name: 'H', email: 'john@email.com', address: '123 Anywhere')
+      tea1 = Tea.create!(title: 'Earl Grey', description: 'Good stuff', temperature: 212, brew_time: 240)
+      tea2 = Tea.create!(title: 'English Breakfast', description: 'Good stuff in the morning', temperature: 212, brew_time: 240)
+      cust.subscriptions.create!( tea_id: tea1.id, title: 'John sub', price: 4, frequency: 1)
+      cust.subscriptions.create!( tea_id: tea2.id, title: 'John sub', price: 4, frequency: 1)
+
+      get "/api/v1/customers/#{cust.id}/subscriptions"
+
+      response_body = JSON.parse(response.body, symbolize_names: true)
+      subs = response_body[:data]
+
+      expect(response).to be_successful
+      expect(response).to have_http_status 200
+
+      expect(response_body).to have_key :data
+      expect(subs).to be_a Hash
+      expect(subs.count).to eq 2
+
+    end
+  end
+  context 'sad path' do
+    it 'returns 404 is the customer id is invalid' do
+      cust = Customer.create!(first_name: 'John', last_name: 'H', email: 'john@email.com', address: '123 Anywhere')
+      get '/api/v1/customers/1000/subscriptions'
+
+      expect(response).to_not be_successful
+      expect(response).to have_http_status 404
+
+      response_body = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response_body).to have_key :error
+      expect(response_body[:error]).to eq 'id not found'
+    end
+  end
+end
