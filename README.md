@@ -3,7 +3,7 @@
 - [MVP](#mvp-description)
 - [Schema](#schema)
 - [Requirements](#requirements)
-- [SetUp](#usage-instructions)
+- [Local Setup](#local-setup)
 - [Available Endpoints](#available-endpoints)
 
 ## **MVP description [MVP](./docs/MVP.md)**
@@ -18,7 +18,7 @@
 ![rspec](https://img.shields.io/badge/RSpec-3.11.0-green)
 - gem jsonapi-serializer
 
-## Local Setup:
+## **Local Setup**
 - `fork` then `git clone` this repository
 - `cd tea_subsription_service` into the root directory
 - `bundle install` to install dependencies
