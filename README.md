@@ -1,22 +1,33 @@
 # README: Tea Subscription Service
-## MVP description [MVP](https://github.com/jhennerich/tea_subscription_service/blob/main/docs/MVP.md)
+## **Table of Contents**
+- [MVP](#mvp-description)
+- [Schema](#schema)
+- [Requirements](#requirements)
+- [SetUp](#usage-instructions)
+- [Available Endpoints](#available-endpoints)
 
-## Requirements:
-- Ruby 2.7.2
-- Rails 5.2.8
-- Postgres 14.3
-- Bundler 2.3.8
+## **MVP description [MVP](./docs/MVP.md)**
+
+## **Schema**
+![plot](./docs/tea_schema.png)
+
+## **Requirements**
+![postgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![ruby](https://img.shields.io/badge/Ruby-2.7.2-red)
+![rails](https://img.shields.io/badge/Rails-5.2.8-red)
+![rspec](https://img.shields.io/badge/RSpec-3.11.0-green)
+- gem jsonapi-serializer
 
 ## Local Setup:
 - `fork` then `git clone` this repository
-- `cd` into the root directory
+- `cd tea_subsription_service` into the root directory
 - `bundle install` to install dependencies
-- `rails db:{create,migrate,seed}` to create a database and seed it with default data (found in config/seeds.rb)
+- `rails db:{create,migrate,seed}`
 - `rails s` to start your server on `localhost:3000`
 
-## Available Endpoints:
+## **Available Endpoints**
 ### GET: /api/v1/customers/1/subscriptions
-- expected JSON
+- expected JSON response
 ```
 {
     "data": {
@@ -48,6 +59,7 @@
     }
 }
 ```
+
 ### POST: /api/v1/customers/1/subscriptions
 - JSON body
 ```
@@ -76,6 +88,7 @@
 ```
 
 ### PATCH: /api/v1/customers/1/subscriptions/1
+- expected JSON response
 ```
 {
     "data": {
