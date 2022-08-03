@@ -18,6 +18,7 @@ class Api::V1::SubscriptionsController < ApplicationController
       frequency: params[:frequency],
       status: 'active'
     )
+    
     render json: CustomerSubscriptionSerializer.hashed_subscriptions(customer.subscriptions),
       status: :ok
   end
