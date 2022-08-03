@@ -59,3 +59,19 @@
     }
 }
 ```
+
+### PATCH: /api/v1/customers/1/subscriptions/1
+```
+{
+    "data": {
+        "type": "subscriptions",
+        "attributes": {
+            "id": 1,
+            "title": "John sub",
+            "price": 4,
+            "frequency": "weekly",
+            "status": "cancelled"
+        }
+    }
+}
+```

@@ -19,13 +19,16 @@ class Api::V1::SubscriptionsController < ApplicationController
       status: 'active'
     )
 
-    render json: CustomerSubscriptionSerializer.show(subscription),
-      status: :ok
+    render json: CustomerSubscriptionSerializer.show(subscription), status: :ok
   end
 
 
-
-
+  def update
+    subscription = Subscription.find(params[:id])
+    subscription.status = 'cancelled'
+    subscription.save
+    render json: CustomerSubscriptionSerializer.show(subscription), status: :ok
+  end
 
   private
 
