@@ -1,5 +1,20 @@
-# README
+# README: Tea Subscription Service
+## MVP description [MVP](https://github.com/jhennerich/tea_subscription_service/blob/main/docs/MVP.md)
 
+## Requirements:
+- Ruby 2.7.2
+- Rails 5.2.8
+- Postgres 14.3
+- Bundler 2.3.8
+
+## Local Setup:
+- `fork` then `git clone` this repository
+- `cd` into the root directory
+- `bundle install` to install dependencies
+- `rails db:{create,migrate,seed}` to create a database and seed it with default data (found in config/seeds.rb)
+- `rails s` to start your server on `localhost:3000`
+
+## Available Endpoints:
 ### GET: /api/v1/customers/1/subscriptions
 - expected JSON
 ```
