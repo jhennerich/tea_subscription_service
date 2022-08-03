@@ -49,19 +49,12 @@
 {
     "data": {
         "type": "subscriptions",
-        "attributes": [
-            {
-                "id": 1,
-                "tea_id": 1,
-                "customer_id": 1,
-                "title": "John sub",
-                "price": 4,
-                "status": "active",
-                "frequency": "weekly",
-                "created_at": "2022-08-02T20:32:36.534Z",
-                "updated_at": "2022-08-02T20:32:36.534Z"
-            }
-          ]
+        "attributes": {
+            "title": "John's Earl Grey",
+            "price": 500,
+            "frequency": "monthly",
+            "status": "active"
+        }
     }
 }
 ```
