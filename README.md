@@ -50,6 +50,7 @@
     "data": {
         "type": "subscriptions",
         "attributes": {
+            "id": 14,
             "title": "John's Earl Grey",
             "price": 500,
             "frequency": "monthly",

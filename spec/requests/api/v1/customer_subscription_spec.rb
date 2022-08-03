@@ -26,14 +26,10 @@ RSpec.describe 'POST/subscribe API endpoint' do
       expect(subs).to be_a Hash
 
       expect(subs.count).to eq 2
-      sub_attributes = subs[:attributes][0]
+      sub_attributes = subs[:attributes]
 
       expect(sub_attributes).to have_key :id
       expect(sub_attributes[:id]).to be_a Integer
-      expect(sub_attributes).to have_key :tea_id
-      expect(sub_attributes[:tea_id]).to be_a Integer
-      expect(sub_attributes).to have_key :customer_id
-      expect(sub_attributes[:customer_id]).to be_a Integer
       expect(sub_attributes).to have_key :title
       expect(sub_attributes[:title]).to be_a String
       expect(sub_attributes).to have_key :price

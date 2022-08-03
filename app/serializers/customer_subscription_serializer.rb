@@ -3,13 +3,13 @@ class CustomerSubscriptionSerializer
  belongs_to :customer
  belongs_to :tea
 
-#attributes :title, :price, :frequency, :status
 def self.show(subscription)
   {
     "data": {
       "type": "subscriptions",
       "attributes":
             {
+              "id": subscription.id,
               "title": subscription.title,
               "price": subscription.price,
               "frequency": subscription.frequency,
