@@ -1,5 +1,6 @@
 class Api::V1::SubscriptionsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :check_for_errors
+#  rescue_from ActiveRecord::RecordInvalid, with: :render_400
 
   def index
     customer = Customer.find(params[:customer_id])
@@ -9,15 +10,17 @@ class Api::V1::SubscriptionsController < ApplicationController
 
   def create
     customer = Customer.find(params[:customer_id])
-    tea = Tea.find_by!(title: params[:tea])
+    tea = Tea.find_by(title: params[:tea])
+    sub_title = "#{customer.first_name}'s #{tea.title}"
+    params[:subscription][:tea_id] = tea.id
+    params[:subscription][:title] = "#{customer.first_name}'s #{tea.title}"
 
-    subscription = customer.subscriptions.create(
-      tea_id: tea.id,
-      title: "#{customer.first_name}'s #{tea.title}",
-      price: params[:price],
-      frequency: params[:frequency],
-      status: 'active'
-    )
+    begin
+      subscription = customer.subscriptions.create!(sub_params)
+    rescue ActiveRecord::RecordInvalid
+       render json: { 'error': 'Missing parameters'}, status: :bad_request
+       return
+    end
 
     render json: CustomerSubscriptionSerializer.show(subscription), status: :ok
   end
@@ -32,7 +35,11 @@ class Api::V1::SubscriptionsController < ApplicationController
 
   private
 
-  def check_for_errors
-    render json: { 'error': 'id not found' }, status: 404
-  end
+    def sub_params
+      params.require(:subscription).permit(:tea_id, :title, :price, :frequency, :status )
+    end
+
+    def check_for_errors
+      render json: { 'error': 'id not found' }, status: 404
+    end
 end
