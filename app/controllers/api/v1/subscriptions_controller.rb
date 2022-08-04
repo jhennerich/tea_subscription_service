@@ -28,6 +28,12 @@ class Api::V1::SubscriptionsController < ApplicationController
 
   def update
     subscription = Subscription.find(params[:id])
+    subscription.update(sub_params)
+    render json: CustomerSubscriptionSerializer.show(subscription), status: :ok
+  end
+
+  def cancel
+    subscription = Subscription.find(params[:id])
     subscription.status = 'cancelled'
     subscription.save
     render json: CustomerSubscriptionSerializer.show(subscription), status: :ok

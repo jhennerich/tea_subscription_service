@@ -28,7 +28,7 @@
 ## **Available Endpoints**
 ### GET: /api/v1/customers/1/subscriptions
 - expected JSON response
-```
+```json
 {
     "data": {
         "type": "subscriptions",
@@ -62,9 +62,8 @@
 
 ### POST: /api/v1/customers/1/subscriptions
 - JSON body
-```
+```json
 {
-
         "tea" : "Earl Grey",
         "price" : 500,
         "frequency" : "monthly",
@@ -72,7 +71,7 @@
 }
 ```
 - expected JSON response
-```
+```json
 {
     "data": {
         "type": "subscriptions",
@@ -88,16 +87,41 @@
 ```
 
 ### PATCH: /api/v1/customers/1/subscriptions/1
-- expected JSON response
+- JSON body
+```json
+{
+    "title" : "New title",
+    "price" : 500,
+    "frequency" : "monthly",
+    "status" : "active"
+}
 ```
+- expected JSON response
+```json
 {
     "data": {
         "type": "subscriptions",
         "attributes": {
             "id": 1,
-            "title": "John sub",
-            "price": 4,
-            "frequency": "weekly",
+            "title": "New title",
+            "price": 500,
+            "frequency": "monthly",
+            "status": "active"
+        }
+    }
+}
+```
+### PATCH: /api/v1/customers/1/subscriptions/1/cancel
+- expected JSON response
+```json
+{
+    "data": {
+        "type": "subscriptions",
+        "attributes": {
+            "id": 1,
+            "title": "New title",
+            "price": 500,
+            "frequency": "monthly",
             "status": "cancelled"
         }
     }

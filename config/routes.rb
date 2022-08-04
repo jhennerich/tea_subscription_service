@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :customers, only: [] do
         resources :subscriptions, only: [:index, :create, :update]
+        patch 'subscriptions/:id/cancel', to: 'subscriptions#cancel'
       end
     end
   end
